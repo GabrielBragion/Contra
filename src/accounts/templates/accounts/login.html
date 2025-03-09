@@ -1,0 +1,28 @@
+{% extends "accounts/_main.html" %}
+{% load crispy_forms_tags%}
+{% load i18n %}
+{% load socialaccount %}
+
+
+{% block page_title%}Login - The Contrarian Report{%endblock%}
+
+{% block tab_title%}{% translate "Login"%}{%endblock%}
+
+{%block form_title%}{% translate "Login"%}{%endblock%}
+
+{%block form_body%} {{login_form|crispy}} {%endblock%}
+
+{%block submit_action%}{% translate "Login"%}{%endblock%}
+
+{%block second_action%}
+<a href="{% provider_login_url 'google' %}" class="d-block btn btn-light rounded-0 w-100 mt-3">{% translate "Login with Google" %}</a>
+
+<a href="{% url "register" %}" class="d-block mx-auto text-center mt-3 text-dark text-decoration-none">{% translate "Dont have an account? Create one here" %}</a>
+
+{%endblock%}
+
+{% block extra_js %}
+<script>
+    document.querySelector("header").style.display = "none"
+</script>
+{% endblock %}

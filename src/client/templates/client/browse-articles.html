@@ -1,0 +1,40 @@
+{% extends "client/_main.html" %}
+{% load i18n%} 
+
+{% block content%} 
+    {%if articles%}
+    <div class="mt-5">
+        {%for article in articles%}
+        <div class="container-cm rounded bg-white mb-5 p-5 shadow"> 
+            <h3>{{article.title}}</h3>
+            <em>{{article.data_posted}}</em>
+            <hr>
+            <p class="mt-2">{{article.content}}</p>
+            <hr>
+            <p class="mb-0">
+                <strong>
+                    {%if article.is_premium%}
+                        {%translate "Premium article"%}
+                    {%else%}
+                        {%translate "Standard article"%}
+                    {%endif%}
+                </strong>
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+    {%elif has_subscription%}
+        <div class="container-cm rounded bg-white my-5 p-5 shadow">
+            <h5>{%translate "No articles found for the given filters"%}</h5>
+        </div>
+    {%else%}
+        <div class="container-cm rounded bg-white mt-5 p-5 shadow">
+            <h5>{%translate "Hi! Thanks for being a registered user!"%}</h5>
+            <strong class="mb-0">
+                <em>{%translate "Before you can browse any articles, you need an active subscription plan!"%}</em>
+            </strong>
+            <hr class="my-4">
+            <a style="width:max-content" href="{% url "subscribe-plan"%}" class="d-block btn btn-dark rounded-0 mx-auto">{%translate "View subscription plans"%}</a>
+        </div>
+    {%endif%}
+{% endblock%}

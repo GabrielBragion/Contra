@@ -1,0 +1,20 @@
+{% extends "writter/_main.html" %}
+{% load i18n%}
+{%load crispy_forms_tags%}
+
+{% block content%} 
+    <div class="container-cm rounded bg-white my-5 p-5 shadow"> 
+        <h3>{% translate "Delete article" %}</h3>
+        <p>{%translate "Are you sure you want to delete the following article?"%}</p>
+        
+
+        <form method="POST" autocomlete="OFF">
+            {% csrf_token %}
+
+            <h5 >{{article.title}}</h5>
+
+            <input class="btn btn-danger rounded-0 float-end mt-5" type="submit" value="{%translate "Delete"%}"/>
+            <a href="{%url "my-articles"%}" class="btn btn-light float-end mt-5 rounded-0">{%translate "Cancel"%}</a>
+        </form>
+    </div>
+{% endblock%}

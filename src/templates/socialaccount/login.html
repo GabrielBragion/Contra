@@ -1,0 +1,50 @@
+{% include "_base_head_content.html" %}
+{% load i18n %}
+{% load allauth %}
+
+{% comment %} {% block page_title %}
+    {% trans "Login - The Contrarian Report" %}
+{% endblock%} {% endcomment %}
+
+
+{%block navbar_option_1%}{%endblock%}
+{%block navbar_option_2%}{%endblock%}
+{%block navbar_option_3%}{%endblock%}
+{%block navbar_option_4%}{%endblock%}
+{%block navbar_option_5%}{%endblock%}
+{%block navbar_option_6%}{%endblock%}
+
+
+{% block content %}
+    <div class="container-cm rounded bg-white my-5 p-5 shadow text-center">
+        {% if process == "connect" %}
+            {% element p %}
+                {% blocktrans with provider.name as provider %}
+                    You are about to connect a new third-party account from {{ provider }}.
+                {% endblocktrans %}
+            {% endelement %}
+        {% else %}
+            <h5>
+                {% blocktrans with provider.name as provider %}
+                    Login with {{ provider }}
+                {% endblocktrans %}
+            </h5>
+            <hr>
+            <p>
+                {% blocktrans with provider.name as provider %}
+                    You are about to sign in using a third-party account from {{ provider }}.
+                {% endblocktrans %}
+            </p>
+        {% endif %}
+        
+        <form method="post" class="mt-4">
+            {% csrf_token %}
+            <div class="actions">
+                <button type="submit" class="btn btn-dark rounded-0 mx-0">
+                    {% trans "Continue" %}
+                </button>
+                <a href="{% url "login"%}" class="btn btn-light rounded-0">{% translate "Cancel"%}</a>
+            </div>
+        </form>
+    </div>
+{% endblock %}

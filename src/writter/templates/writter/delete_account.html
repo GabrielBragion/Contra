@@ -1,0 +1,20 @@
+{% extends "writter/_main.html" %}
+{% load i18n%}
+
+{% block content%} 
+    <div class="container-cm rounded bg-white my-5 p-5 shadow"> 
+        <h3>{% translate "Delete account" %}</h3>
+        <p>{%translate "Are you sure you want to delete your user account?"%}</p>
+        
+
+        <form method="POST" autocomlete="OFF">
+            {% csrf_token %}
+
+            <h5 >{{user.email}}</h5>
+            <h5 >{{user.first_name}}</h5>
+
+            <input class="btn btn-danger rounded-0 float-end mt-5" type="submit" value="{%translate "Delete"%}"/>
+            <a href="{%url "update-user"%}" class="btn btn-light float-end mt-5 rounded-0">{%translate "Cancel"%}</a>
+        </form>
+    </div>
+{% endblock%}

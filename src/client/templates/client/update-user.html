@@ -1,0 +1,57 @@
+{% extends "client/_main.html" %} 
+{% load i18n%} 
+{%load crispy_forms_tags%} 
+{% block content%}
+
+{% if messages %}
+  {% for message in messages %}
+    {% if 'user_update' in message.tags %}
+      <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{%translate "Close"%}"></button>
+      </div>
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{%if has_subscription%}
+  <div class="container-cm rounded bg-white mt-5 p-5 shadow"> 
+    <h3>{% translate "Update subscription details"%}</h3>
+    <p>{%translate "Would like to alter your subscription?"%}</p>
+    <p class="my-5">{%translate "Current plan: "%}<strong>{%translate subscription_plan%}</strong></p>
+    <a href={%url "cancel-subscription" subscription.id%} class="btn btn-light rounded-0 float-end" type="submit">{%translate "Cancel subscription"%}</a>
+    <a href={%url "update-subscription" subscription.id%} class="btn btn-dark rounded-0 float-end" type="submit">{%translate "Update"%}</a>
+
+  </div>
+{%endif%}
+
+{%if not has_subscription%}
+  <div class="container-cm rounded bg-white mt-5 p-5 shadow text-center">
+      <h4 class="mb-0">{%translate "Choose a subscription plan"%}</h4>
+      <hr class="my-4">
+      <a href="{% url "subscribe-plan"%}" class="btn btn-dark rounded-0">{%translate "View subscription plans"%}</a>
+  </div>
+{%endif%}
+
+
+<div class="container-cm rounded bg-white my-5 p-5 shadow">
+    <h3>{% translate "Update account details" %}</h3>
+    <p>{%translate "You may update the following details below:"%}</p>
+    <form
+        method="POST"
+        autocomlete="OFF">
+        {% csrf_token %} 
+        
+       {{update_user_form|crispy}}
+
+       <a href={%url "change-password"%} class="btn btn-light rounded-0 float-end">{%translate "Change password"%}</a>
+
+        <a href={%url "client-delete-account"%} class="btn btn-light rounded-0 float-end" type="submit">{%translate "Delete account"%}</a>
+        <input class="btn btn-dark rounded-0 float-end" type="submit" value="{%translate "Update"%}"/>
+    </form>
+</div>
+
+
+
+
+{% endblock%}

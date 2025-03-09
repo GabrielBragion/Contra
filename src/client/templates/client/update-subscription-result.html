@@ -1,0 +1,13 @@
+{% extends "client/_main.html" %}
+{%load i18n%}
+
+{% block content %}
+<div class="container-cm rounded bg-white my-5 p-5 shadow text-center">
+    <h5>{%translate "Subscription updated"%}</h5>
+    <hr>
+    <p>
+        {%translate "Your subscription has been updated as per your request!"%}
+    </p>
+    <a href="{% url "client-update-user"%}" class="btn btn-dark rounded-0">{% translate "Return"%}</a>
+</div>
+{% endblock%}

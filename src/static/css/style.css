@@ -1,0 +1,33 @@
+body{background-color: #ededed;
+display: flex;
+flex-direction: column;
+min-height: 100dvh;}
+
+#id_password1_helptext, #id_password2_helptext {
+    display: none; /* Esconde por padrão */
+}
+
+input[type="text"],input[type="email"],input[type="password"]{
+    border-radius: 0;
+}
+input[type="password"]:focus + #id_password1_helptext {
+    display: block; /* Mostra quando o campo estiver focado */
+}
+input[type="checkbox"]:checked{
+    background-color: #222;
+}
+.container-cm{
+    width: 500px;
+    margin-inline: auto;
+}
+main{
+    flex: 1;
+}
+footer{
+    margin-top: auto;
+    height: 80px;
+}
+textarea.textarea{
+    resize: none;
+    border-radius: 0;
+}

@@ -1,0 +1,46 @@
+{% extends "client/_main.html" %} 
+{% load i18n%} 
+{%load crispy_forms_tags%} 
+{% block content%}
+
+{% comment %} {% if messages %}
+  {% for message in messages %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="{%translate "Close"%}"></button>
+    </div>
+  {% endfor %}
+{% endif %}
+ {% endcomment %}
+
+<div class="container-cm rounded bg-white mt-5 p-5 shadow">
+    <h3>{% translate "New subscription plan" %}</h3>
+    <p>{%translate "You may update yout subscription for one of these options:"%}</p>
+    <form
+        method="POST"
+        autocomlete="OFF">
+        {% csrf_token %} 
+        
+        {{update_subscription_form|crispy}}
+
+        <a href={%url "client-update-user"%} class="btn btn-light rounded-0 float-end" type="submit">{%translate "Cancel"%}</a>
+        <input class="btn btn-dark rounded-0 float-end" type="submit" value="{%translate "Update"%}"/>
+    </form>
+</div>
+
+<div class="container">
+    <div class="row">
+        {%for plan_choice in plan_choices%}
+        <div class="container-cm rounded bg-white my-5 p-5 shadow text-center">
+            <h5>{%translate plan_choice.name%} {%translate "Subscription"%}</h5>
+            <hr />
+            <p>{%translate plan_choice.description1%}</p>
+            <p>{%translate plan_choice.description2%}</p>
+            <p><strong>{{plan_choice.cost}} {%translate "monthly"%}</strong></p>
+            <hr />
+        </div>
+        {%endfor%}
+    </div>
+</div>
+
+{% endblock%}

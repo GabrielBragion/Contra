@@ -1,0 +1,40 @@
+{% extends "writter/_main.html" %}
+{% load i18n%}
+
+{% block content%}
+
+    {%if not articles%}
+    <div class="container-cm rounded bg-white mt-5 p-5 shadow"> 
+        <h5>{%translate "You still haven't created any article"%}</h5>
+        <p>
+            {%translate "Here you'll see all the reports and articles you've written."%}
+        </p>
+        <p class="mt-5">
+            <em>{%translate "What's your perspective on the markets?"%}</em>
+        </p>
+    </div>
+    {%endif%}
+
+    <div class="mt-5">
+    {%for article in articles%}
+    <div class="container-cm rounded mb-5 bg-white p-5 shadow"> 
+        <h3>{{article.title}}</h3>
+        <em>{{article.data_posted}}</em>
+        <hr>
+        <p class="mt-2">{{article.content}}</p>
+        <hr>
+        <p>
+            <strong>
+                {%if article.is_premium%}
+                    {%translate "Premium article"%}
+                {%else%}
+                    {%translate "Standard article"%}
+                {%endif%}
+            </strong>
+        </p>
+        <a href="{%url "delete-article" article.id%}" class="btn btn-light rounded-0 float-end">{%translate "Delete"%}</a>
+        <a href="{%url "update-article" article.id%}" class="btn btn-light rounded-0 float-end">{%translate "Update"%}</a>
+    </div>
+    {% endfor %}
+    </div>
+{% endblock%}

@@ -1,0 +1,98 @@
+<!--
+    https://docs.djangoproject.com/en/5.1/ref/templates/language/
+-->
+{% load i18n%}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block page_title%}The Contrarian Report{%endblock%}</title>
+        {% block base_head_content%} {% include "_base_head_content.html"%} {% endblock%}
+    </head>
+    <body>
+        <header class="container-fluid">
+            <div class="row">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light px-3">
+                    <a
+                        class="navbar-brand mb-0 h1"
+                        href="/"
+                        >The Contrarian Report</a
+                    >
+                    <button
+                        class="navbar-toggler rounded-0"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavAltMarkup"
+                        aria-controls="navbarNavAltMarkup"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div
+                        class="collapse navbar-collapse"
+                        id="navbarNavAltMarkup">
+                        <ul class="navbar-nav ms-auto">
+                            {%block navbar_option_1%}
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{% url option_url %}">
+                                    {% translate option_label %}
+                                </a>
+                            </li>
+                            {%endblock%} {%block navbar_option_2%}
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{% url option_url %}">
+                                    {% translate option_label %}
+                                </a>
+                            </li>
+                            {%endblock%} {%block navbar_option_3%}
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{% url option_url %}">
+                                    {% translate option_label %}
+                                </a>
+                            </li>
+                            {%endblock%} {%block navbar_option_4%}
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{% url option_url %}">
+                                    {% translate option_label %}
+                                </a>
+                            </li>
+                            {%endblock%} {%block navbar_option_5%}
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{% url option_url %}">
+                                    {% translate option_label %}
+                                </a>
+                            </li>
+                            {%endblock%} {%block navbar_option_6%}
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="{% url option_url %}">
+                                    {% translate option_label %}
+                                </a>
+                            </li>
+                            {%endblock%}
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        {%block content%}{%endblock%}
+
+        <footer class="container-fluid bg-dark">
+            <p class="text-center mt-4 mb-0 text-white">
+                {%translate " Developed for UFCD 5422 of the Programming CET" %}
+            </p>
+        </footer>
+    </body>
+</html>

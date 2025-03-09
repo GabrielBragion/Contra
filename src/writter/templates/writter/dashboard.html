@@ -1,0 +1,8 @@
+{% extends "writter/_main.html" %}
+{% load i18n%} 
+
+{% block content%} 
+    <div class="container-cm rounded bg-white my-5 p-5 shadow text-center"> 
+        <h3 class="mb-0">{% translate "Welcome back, " %}{{user.first_name}}</h3>
+    </div>
+{% endblock%}

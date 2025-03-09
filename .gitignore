@@ -1,0 +1,7 @@
+.venv
+.env
+.vscode
+__pycache__
+*.pyc
+comandos_uteis.txt
+db.sqlite3

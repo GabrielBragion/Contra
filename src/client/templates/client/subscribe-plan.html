@@ -1,0 +1,46 @@
+{% extends "client/_main.html" %} {% load i18n%} {%load l10n%} {% block content%}
+<div class="container-cm rounded bg-white mb-4 mt-5 p-5 shadow text-center">
+    <h5 class="mb-0">{% translate "Subscription plans"%}</h5>
+</div>
+
+<div class="container">
+    <div class="row">
+        {%for plan_choice in plan_choices%}
+        <div class="container-cm rounded bg-white mb-4 p-5 shadow text-center">
+            <h5>{%translate plan_choice.name%} {%translate "Subscription"%}</h5>
+            <hr />
+            <p>{%translate plan_choice.description1%}</p>
+            <p>{%translate plan_choice.description2%}</p>
+            <p><strong>{{plan_choice.cost|localize}} {%translate "monthly"%}</strong></p>
+            <hr />
+            <div id="paypal-button-container-{{plan_choice.external_plan_id}}"></div>
+            <script
+                src="{{plan_choice.external_api_url}}"
+                data-sdk-integration-source="button-factory"></script>
+            <script>
+                paypal
+                    .Buttons({
+                        {% autoescape off %}
+                        style: {{plan_choice.external_style_json}},
+                        {% endautoescape %}
+                        createSubscription: function (data, actions) {
+                            return actions.subscription.create({
+                                /* Creates the subscription */
+                                plan_id: "{{plan_choice.external_plan_id}}",
+                            })
+                        },
+                        onApprove: function (data, actions) {
+                            let url_path = `/client/create-subscription/${data.subscriptionID}/{{plan_choice.plan_code}}`
+                            window.open(url_path, "_self")
+                            // alert(data.subscriptionID) // You can add optional success message for the subscriber here
+                        },
+                    })
+                    .render("#paypal-button-container-{{plan_choice.external_plan_id}}") // Renders the PayPal button
+            </script>
+        </div>
+        {%endfor%}
+    </div>
+</div>
+
+
+{% endblock%}

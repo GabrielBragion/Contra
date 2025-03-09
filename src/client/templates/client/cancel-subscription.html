@@ -1,0 +1,20 @@
+{% extends "client/_main.html" %}
+{% load i18n%}
+{%load crispy_forms_tags%}
+
+{% block content%} 
+    <div class="container-cm rounded bg-white mt-5 p-5 shadow"> 
+        <h3>{% translate "Cancel subscription" %}</h3>
+        <p>{%translate "Are you sure you want to cancel your subscription?"%}</p>
+        
+
+        <form method="POST" autocomlete="OFF">
+            {% csrf_token %}
+
+            <h5 class="mt-5">{{subscription_plan}} {%translate "subscription"%}</h5>
+
+            <input class="btn btn-danger rounded-0 float-end mt-5" type="submit" value="{%translate "Yes, cancel"%}"/>
+            <a href="{%url "client-update-user"%}" class="btn btn-light float-end mt-5 rounded-0">{%translate "No"%}</a>
+        </form>
+    </div>
+{% endblock%}

@@ -1,0 +1,48 @@
+{%extends "base.html" %} {% load i18n%} 
+
+{% block page_title%}Home - The Contrarian Report{%endblock%}
+
+
+{% comment %} LINKS DA NAVBAR {% endcomment %}
+{%block navbar_option_1%}
+    {%with option_url='register' option_label='Register'%}
+        {{block.super}}
+    {% endwith %}
+{%endblock%}
+
+{%block navbar_option_2%}    
+    {%with option_url='login' option_label='Login'%}
+        {{block.super}}
+    {% endwith %}
+{%endblock%}
+
+
+
+{%block navbar_option_3%}{%endblock%}
+{%block navbar_option_4%}{%endblock%}
+{%block navbar_option_5%}{%endblock%}
+{%block navbar_option_6%}{%endblock%}
+
+
+{% comment %} CONTEUDO {% endcomment %}
+{%block content%}
+<main class="container-fluid">
+    <div class="row">
+        <section class="hero text-center my-5">
+            <h1 class="w-75 mx-auto">
+                {%translate "Gain access to unique and profitable insights into the capital markets!"%}
+            </h1>
+            <p class="lead w-50 mx-auto">{%translate "Access our exclusive and curated collection of reports and articles"%}</p>
+            <a
+                class="btn btn-dark rounded-0 my-3"
+                type="button"
+                href="{% url 'register' %}">
+                <i
+                    class="fa fa-angle-right"
+                    aria-hidden="true"></i
+                >{%translate "Get Started"%}
+            </a>
+        </section>
+    </div>
+</main>
+{%endblock%}

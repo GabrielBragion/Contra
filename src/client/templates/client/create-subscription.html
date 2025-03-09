@@ -1,0 +1,12 @@
+{% extends "client/_main.html" %} {% load i18n%} {% block content%}
+<div class="container-cm rounded bg-white my-5 p-5 shadow text-center">
+    <h5>{%translate subscription_plan%} {%translate "subscription activated!"%}</h5>
+    <hr>
+    <p>
+        {%translate "Thanks for subscribing!"%}
+        {%translate "You can now browse articles available to this subscription plan"%}
+    </p>
+    <a href="{% url "browse-articles"%}" class="btn btn-dark rounded-0">{% translate "Browse articles"%}</a>
+</div>
+
+{% endblock%}

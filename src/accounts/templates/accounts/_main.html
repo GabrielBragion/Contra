@@ -1,0 +1,29 @@
+{% include "_base_head_content.html" %}
+{% load i18n %}
+
+
+{% comment %} LOGIN E REGISTER FORMS {% endcomment %}
+{%block content%}
+    <div class="container-cm bg-white shadow my-5 p-5 rounded">
+        <form method="POST">
+            {% csrf_token %} {% comment %} Evita ataque cross side request forgery {% endcomment %}
+
+            <h1>{% block form_title %}{% endblock %}</h1>
+            
+            {% block form_body %}{% endblock %}
+
+            <input type="submit" class="btn btn-dark rounded-0 w-100 mt-3"
+            value="{%block submit_action %}{% translate "Submit" %}{% endblock %}" />
+
+            
+            {%block second_action%}{% endblock %}
+
+        </form>
+    </div>
+    {% block extra_js %}{%endblock%}
+{%endblock%}
+
+
+
+    
+
