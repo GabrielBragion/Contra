@@ -84,7 +84,8 @@ class Subscription(models.Model):
 
     def __str__(self) -> str:
         plan_choice = self.plan_choice
-        return f"{self.user.first_name} {self.user.last_name}: {plan_choice.name} {_t2("subscription")}"
+        subscription_text = _t2("subscription")
+        return f"{self.user.first_name} {self.user.last_name}: {plan_choice.name} {subscription_text}"
 
     async def aplan_choice(self) -> PlanChoice:
         @sync_to_async
