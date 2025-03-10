@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY: str = decouple.config("SECRET_KEY")  # type: ignore
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS: str = decouple.config("ALLOWED_HOSTS", default="").split(",")  # type: ignore
 CSRF_TRUSTED_ORIGINS: str = decouple.config("CSRF_TRUSTED_ORIGINS", default="").split(",") # type: ignore
@@ -86,6 +86,7 @@ SOCIALACCOUNT_PROVIDERS = {
 
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",  # Adicione aqui
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -169,6 +170,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")  # Onde os arquivos coletado
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),  # Onde os arquivos estáticos ficam antes da coleta
 ]
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
