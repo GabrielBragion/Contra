@@ -17,7 +17,7 @@ input[type="checkbox"]:checked{
     background-color: #222;
 }
 .container-cm{
-    width: 500px;
+    max-width: 500px;
     margin-inline: auto;
 }
 main{
